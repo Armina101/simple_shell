@@ -1,5 +1,5 @@
-#ifndef HOLBERTON_H
-#define HOLBERTON_H
+#ifndef SHELLIE_H
+#define SHELLIE_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,5 +14,5 @@
 char **tokenize(char *input);
 int execute(char **args);
 
-#endif /* HOLBERTON_H */
+#endif
 
