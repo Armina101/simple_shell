@@ -10,7 +10,7 @@ void implement_env(void)
 	int a;
 
 	a = 0;
-	while (environ[a] != NULL)
+	while (environ[a] != 0)
 	{
 		_puts(environ[a]);
 		_puts("\n");
