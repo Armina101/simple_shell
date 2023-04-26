@@ -10,7 +10,7 @@ The shell is a command line interface (CLI) program that takes commands from the
 | -------- | ----------- |
 | `AUTHORS` | A file listing all contributors to this project repository. |
 | `SHELL.H`  | Containing prototypes of functions used |
-| `SHELL.C`  | Entry point of shell program |
+| `SHELLIE.C`  | Entry point of shell program |
 
 --------
 ## List of allowed functions and system calls
