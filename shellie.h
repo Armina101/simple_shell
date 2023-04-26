@@ -14,6 +14,7 @@
 char **tokenize(char *input);
 int execute(char **args);
 int betty(void);
+int main(void);
 
 #endif
 
