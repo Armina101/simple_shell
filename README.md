@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #Authors
 
 This simple_shell was developed by Aminat Afolabi and Great-Victor Anjorin as a project for ALX's Sofware Engineering course(Cohort 12).
@@ -15,7 +14,7 @@ The shell is a command line interface (CLI) program that takes commands from the
 | -------- | ----------- |
 | `AUTHORS` | A file listing all contributors to this project repository. |
 | `SHELL.H`  | Containing prototypes of functions used |
-| `SHELLIE.C`  | Entry point of shell program |
+| `SHELL.C`  | Entry point of shell program |
 
 --------
 ## List of allowed functions and system calls
@@ -27,4 +26,3 @@ The shell is a command line interface (CLI) program that takes commands from the
 `readdir (man 3 readdir)`  `signal (man 2 signal)`  `stat (__xstat) (man 2 stat)`  `lstat (__lxstat) (man 2 lstat)` 
 `fstat (__fxstat) (man 2 fstat)`  `strtok (man 3 strtok)`  `wait (man 2 wait)`  `waitpid (man 2 waitpid)`  `wait3 (man 2 wait3)` 
 `wait4 (man 2 wait4)`  `write (man 2 write)` 
->>>>>>> 083a47bd4698efef2ad981e800495f3c22789fd9
