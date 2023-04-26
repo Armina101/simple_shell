@@ -42,6 +42,6 @@ free(args);
 
 free(input);
 free(args); /* Free args here to address reachable memory issue */
-return status;
+return (status);
 }
 
