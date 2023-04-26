@@ -84,6 +84,5 @@ void _puts2(char *str);
 char *uint_to_ascii(unsigned int count);
 
 void sigint_handler(int sig);
-int betty(void);
 
 #endif /* _SHELL_H_ */

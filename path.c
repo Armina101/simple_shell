@@ -106,7 +106,6 @@ unsigned int i = 0, j = 0;
 char **path_tokens = NULL;
 struct stat buf;
 
-printf("Command received: %s\n", vars->av[0]);
 if (is_command_in_path(vars->av[0]))
 j = execute_locally(vars);
 else
