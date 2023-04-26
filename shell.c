@@ -1,62 +1,46 @@
-#include "shell.h"
+#include "shellie.h"
 
 /**
-* sigint_handler - Handles the SIGINT signal sent to the process
-* @sig: The signal number
-* Return: Nothing
+* main - Entry point for the simple shell
+* Return: 0 on success, 1 on failure
 */
+int main(void)
+{
+char *input = NULL, **args = NULL;
+size_t input_size = 0;
+ssize_t bytes_read = 0;
+int status = 0;
 
-void sigint_handler(int sig)
+do {
+printf("#cisfun$ ");
+bytes_read = getline(&input, &input_size, stdin);
+if (bytes_read == -1)
 {
-(void)sig;
-_putchar('\n');
-write(STDOUT_FILENO, "$ ", 2);
-fflush(stdout);
+if (errno == EINTR) /* Interrupted system call */
+{
+clearerr(stdin); /* Clear the error and try again */
+continue;
+}
+else
+{
+perror("getline");
+status = 1;
+break;
+}
+}
+args = tokenize(input);
+if (args == NULL)
+{
+fprintf(stderr, "Failed to tokenize input\n");
+status = 1;
+break;
+}
+status = execute(args);
+free(args);
+} while (status == 0);
+
+free(input);
+free(args); /* Free args here to address reachable memory issue */
+return (status);
 }
 
-/**
-* main - Main function for the simple shell program
-* @argc: Number of arguments passed to main
-* @argv: Array of arguments passed to main
-* @environment: Array of environment variables
-* Return: 0 or exit status, or unknown
-*/
-int main(int argc __attribute__((unused)), char **argv, char **environment)
-{
-size_t len_buffer = 0;
-unsigned int is_pipe = 0, i;
-vars_t vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
-
-vars.argv = argv;
-vars.env = make_env(environment);
-signal(SIGINT, sigint_handler);
-if (!isatty(STDIN_FILENO))
-is_pipe = 1;
-if (is_pipe == 0)
-_puts("$ ");
-fflush(stdout);
-while (getline(&(vars.buffer), &len_buffer, stdin) != -1)
-{
-vars.count++;
-vars.commands = tokenize(vars.buffer, ";");
-for (i = 0; vars.commands && vars.commands[i] != NULL; i++)
-{
-vars.av = tokenize(vars.commands[i], "\n \t\r");
-if (vars.av && vars.av[0])
-if (find_builtin_command(&vars) == NULL)
-check_for_command(&vars);
-free(vars.av);
-}
-free(vars.buffer);
-free(vars.commands);
-vars.buffer = NULL;
-if (is_pipe == 0)
-_puts("$ ");
-fflush(stdout);
-}
-if (is_pipe == 0)
-_puts("\n");
-free_env(vars.env);
-free(vars.buffer);
-exit(vars.status);
-}
