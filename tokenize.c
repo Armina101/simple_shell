@@ -3,7 +3,6 @@
 /**
 * tokenize - Tokenize a given string
 * @input: The string to tokenize
-*
 * Return: An array of tokens
 */
 char **tokenize(char *input)

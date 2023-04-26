@@ -3,7 +3,6 @@
 /**
 * execute - Execute a given command
 * @args: The arguments to the command
-*
 * Return: 0 on success, 1 on failure
 */
 int execute(char **args)

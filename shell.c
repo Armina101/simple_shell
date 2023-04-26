@@ -2,7 +2,6 @@
 
 /**
 * main - Entry point for the simple shell
-*
 * Return: 0 on success, 1 on failure
 */
 int main(void)
@@ -42,6 +41,6 @@ free(args);
 
 free(input);
 free(args); /* Free args here to address reachable memory issue */
-return status;
+return (status);
 }
 
