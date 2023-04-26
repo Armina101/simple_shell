@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <shellie.h>
+#include "shell.h"
 
 /**
 * betty - Entry point
@@ -10,13 +9,13 @@
 
 int betty(void)
 {
-	int x = 5;
-	int y = 4;
-	int sum;
+int x = 5;
+int y = 4;
+int sum;
 
-	sum = x + y;
+sum = x + y;
 
-	printf("The sum of %d and %d is %d\n", x, y, sum);
+printf("The sum of %d and %d is %d\n", x, y, sum);
 
-	return (0);
+return (0);
 }
