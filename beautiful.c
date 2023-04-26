@@ -1,13 +1,14 @@
 #include <stdio.h>
+#include <shellie.h>
 
 /**
-* main - Entry point
+* betty - Entry point
 * Description: This function calculates the sum of two integers
 * and prints the result.
 * Return: Always 0 (Success)
 */
 
-int main(void)
+int betty(void)
 {
 	int x = 5;
 	int y = 4;
