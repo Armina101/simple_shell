@@ -45,8 +45,10 @@ _puts2(vars->av[1]);
 _puts2("\n");
 return;
 }
-else
+vars->status = exit_status;
 }
+else
+{
 vars->status = 0;
 }
 free(vars->buffer);
