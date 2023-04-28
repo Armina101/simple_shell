@@ -158,4 +158,3 @@ free(vars->env);
 vars->env = new_env;
 vars->status = 0;
 }
-
