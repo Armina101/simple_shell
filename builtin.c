@@ -43,11 +43,11 @@ vars->status = 2;
 print_error(vars, ": Invalid number format: ");
 _puts2(vars->av[1]);
 _puts2("\n");
-free(vars->commands);
-vars->commands = NULL;
 return;
 }
-vars->status = exit_status;
+else
+}
+vars->status = 0;
 }
 free(vars->buffer);
 free(vars->av);
