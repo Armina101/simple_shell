@@ -31,6 +31,7 @@ char **env;
 size_t count;
 char **argv;
 int status;
+int readfd;
 char **commands;
 } vars_t;
 
@@ -84,5 +85,6 @@ void _puts2(char *str);
 char *uint_to_ascii(unsigned int count);
 
 void sigint_handler(int sig);
+int check_interactive(vars_t *vars);
 
 #endif /* _SHELL_H_ */
