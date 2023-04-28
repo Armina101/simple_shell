@@ -48,6 +48,7 @@ void (*f)(vars_t *);
 
 char **make_env(char **env);
 void free_env(char **env);
+void command_exit(char *c);
 
 int _putchar(char c);
 ssize_t _puts(char *str);
