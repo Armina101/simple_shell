@@ -9,7 +9,7 @@
 int execute_path_command(char *command, vars_t *vars)
 {
 pid_t pid = fork();
-int status;
+int status = 0;
 
 if (access(command, X_OK) == -1)
 {
