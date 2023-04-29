@@ -114,7 +114,8 @@ path = getenv("PATH");
 if (path == NULL)
 {
 {
-perror("not found");
+dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n",
+vars->line_num, vars->av[0]);
 vars->status = 127;
 perform_exit(vars);
 }
@@ -139,7 +140,8 @@ perform_exit(vars);
 }
 if (path_tokens == NULL || path_tokens[i] == NULL)
 {
-perror("not found");
+dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n",
+vars->line_num, vars->av[0]);
 vars->status = 127;
 }
 free(path_tokens);
