@@ -64,11 +64,11 @@ if (access(vars->av[0], X_OK) == 0)
 {
 pid = fork();
 if (pid == -1)
-perror("fork error");
+perror(NULL);
 if (pid == 0)
 {
 if (execve(vars->av[0], vars->av, vars->env) == -1)
-perror("execve error");
+perror(NULL);
 }
 else
 {
@@ -114,8 +114,7 @@ path = getenv("PATH");
 if (path == NULL)
 {
 {
-dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n", 
-vars->line_num, vars->av[0]);
+perror("not found");
 vars->status = 127;
 perform_exit(vars);
 }
@@ -140,8 +139,6 @@ perform_exit(vars);
 }
 if (path_tokens == NULL || path_tokens[i] == NULL)
 {
-dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n", 
-vars->line_num, vars->av[0]);
 perror("not found");
 vars->status = 127;
 }
