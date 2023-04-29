@@ -111,8 +111,14 @@ j = execute_locally(vars);
 else
 {
 path = getenv("PATH");
-if (path != NULL)
+if (path == NULL)
 {
+{
+dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n", 
+vars->line_num, vars->av[0]);
+vars->status = 127;
+perform_exit(vars);
+}
 path_dup = _strdup(path + 5);
 path_tokens = tokenize(path_dup, ":");
 for (i = 0; path_tokens && path_tokens[i]; i++, free(check))
@@ -132,8 +138,10 @@ vars->status = 127;
 perform_exit(vars);
 }
 }
-if (path == NULL || path_tokens[i] == NULL)
+if (path_tokens == NULL || path_tokens[i] == NULL)
 {
+dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n", 
+vars->line_num, vars->av[0]);
 perror("not found");
 vars->status = 127;
 }
