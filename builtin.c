@@ -16,7 +16,6 @@ builtins_t builtins[] = {
 };
 builtins_t *builtin;
 
-printf("Checking command: %s\n", vars->av[0]);
 for (builtin = builtins; builtin->name != NULL; ++builtin)
 {
 if (_strcmpr(vars->av[0], builtin->name) == 0)
