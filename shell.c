@@ -37,7 +37,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 size_t len_buffer = 0;
 unsigned int is_pipe = 0, i;
-vars_t vars = {NULL, NULL, NULL, 0, NULL, 0, 0, NULL};
+vars_t vars = {NULL, NULL, NULL, 0, NULL, 0, 0, NULL, 1};
 
 vars.argv = argv;
 vars.env = make_env(environment);
@@ -47,6 +47,7 @@ is_pipe = 1;
 if (is_pipe == 0)
 _puts("$ ");
 fflush(stdout);
+
 while (getline(&(vars.buffer), &len_buffer, stdin) != -1)
 {
 vars.count++;

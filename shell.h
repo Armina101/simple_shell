@@ -33,6 +33,7 @@ char **argv;
 int status;
 int readfd;
 char **commands;
+int line_num;
 } vars_t;
 
 /**
