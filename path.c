@@ -9,7 +9,7 @@
 int execute_path_command(char *command, vars_t *vars)
 {
 pid_t pid = fork();
-int status = 0;
+int status;
 
 if (access(command, X_OK) == -1)
 {
@@ -64,11 +64,11 @@ if (access(vars->av[0], X_OK) == 0)
 {
 pid = fork();
 if (pid == -1)
-perror(NULL);
+perror("fork error");
 if (pid == 0)
 {
 if (execve(vars->av[0], vars->av, vars->env) == -1)
-perror(NULL);
+perror("execve error");
 }
 else
 {
@@ -111,18 +111,13 @@ j = execute_locally(vars);
 else
 {
 path = getenv("PATH");
-if (path == NULL)
+if (path != NULL)
 {
-dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n", vars->line_num, vars->av[0]);
-vars->status = 127;
-perform_exit(vars);
-}
-path_dup = _strdup(path);
+path_dup = _strdup(path + 5);
 path_tokens = tokenize(path_dup, ":");
 for (i = 0; path_tokens && path_tokens[i]; i++, free(check))
 {
-check = _strcat(path_tokens[i], "/");
-check = _strcat(check, vars->av[0]);
+check = _strcat(path_tokens[i], vars->av[0]);
 if (stat(check, &buf) == 0)
 {
 j = execute_path_command(check, vars);
@@ -131,16 +126,21 @@ break;
 }
 }
 free(path_dup);
-if (path_tokens == NULL || path_tokens[i] == NULL)
+if (path_tokens == NULL)
 {
-dprintf(STDERR_FILENO, "./hsh: %d: %s: not found\n", vars->line_num, vars->av[0]);
 vars->status = 127;
 perform_exit(vars);
 }
 }
+if (path == NULL || path_tokens[i] == NULL)
+{
+perror("not found");
+vars->status = 127;
+}
+free(path_tokens);
+}
 if (j == 1)
 perform_exit(vars);
-free(path_tokens);
 }
 
 /**
